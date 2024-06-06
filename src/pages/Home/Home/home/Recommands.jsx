@@ -5,7 +5,7 @@ export default function Recommands() {
     return (
         <section>
             <SectionTitle title={'CHEF RECOMMENDS'} subtitle={'---Should Try---'}></SectionTitle>
-            <div className="flex flex-col lg:flex-row gap-6 my-10">
+            <div className="flex flex-col md:flex-row gap-6 my-10">
                 <div className="card w-96 bg-[#F3F3F3] shadow-xl mx-auto">
                     <figure className="px-10 pt-10">
                         <img src={img} alt="Shoes" className="rounded-xl h-60 w-full" />

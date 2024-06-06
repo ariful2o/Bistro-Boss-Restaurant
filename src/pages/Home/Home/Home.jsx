@@ -5,6 +5,7 @@ import Manu from "./home/Menu";
 import CallUs from "./home/CallUs";
 import Recommands from "./home/Recommands";
 import PralexBanner from "./home/PralexBanner";
+import Reviews from "./home/Reviews";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <CallUs></CallUs>
       <Recommands></Recommands>
       <PralexBanner></PralexBanner>
+      <Reviews></Reviews>
     </div>
   )
 }
