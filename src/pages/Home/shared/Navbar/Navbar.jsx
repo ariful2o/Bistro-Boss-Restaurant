@@ -6,7 +6,7 @@ export default function Navbar() {
         <li><Link to='/'>CONTACT us</Link></li>
         <li><Link to='/'>DASHBOARD</Link></li>
         <li><Link to='/'>Our Menu</Link></li>
-        <li><Link to='/'>Our Shop</Link></li>
+        <li><Link to='/orders'>Orders</Link></li>
 
     </>
     return (
