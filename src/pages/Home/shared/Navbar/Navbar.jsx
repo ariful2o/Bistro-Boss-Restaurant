@@ -5,8 +5,8 @@ export default function Navbar() {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/'>CONTACT us</Link></li>
         <li><Link to='/'>DASHBOARD</Link></li>
-        <li><Link to='/'>Our Menu</Link></li>
-        <li><Link to='/orders'>Orders</Link></li>
+        <li><Link to='/orders'>Our Menu</Link></li>
+        <li><Link to='/shop'>Our Shop</Link></li>
 
     </>
     return (
