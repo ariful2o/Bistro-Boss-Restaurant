@@ -1,6 +1,6 @@
 import Cover from "../../components/cover/Cover"
 import banner from "../../assets/shop/banner2.jpg"
-import Tabs from "./Tabs/Tabs"
+import Tabs from "./Tabs/TabItems"
 
 
 function Shop() {
