@@ -7,6 +7,7 @@ import soupImg from '../../assets/menu/soup-bg.jpg'
 
 import useMenu from "../../hooks/menus/useMenu";
 import MenuItem from "../../components/menu/MenuItem";
+import { Link } from "react-router-dom";
 
 
 export default function Order() {
@@ -23,24 +24,36 @@ export default function Order() {
                     offered.map(menu => <MenuItem key={menu._id} menu={menu}></MenuItem>)
                 }
             </div>
+
             <Cover img={soupImg} title="SOUP" subTitle="Would you like to try a dish?"></Cover>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-12 my-10 w-11/12 mx-auto">
                 {
                     soup.map(menu => <MenuItem key={menu._id} menu={menu}></MenuItem>)
                 }
             </div>
+            <Link to={`/shop/${'soup'}`}>
+                <button className="btn btn-outline border-0 border-b-2 mx-auto block my-6">View Full Menu</button>
+            </Link>
+
             <Cover img={dessertImg} title="DESSERTS" subTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></Cover>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-12 my-10 w-11/12 mx-auto">
                 {
                     dessert.map(menu => <MenuItem key={menu._id} menu={menu}></MenuItem>)
                 }
             </div>
+            <Link to={`/shop/${'dessert'}`}>
+                <button className="btn btn-outline border-0 border-b-2 mx-auto block my-6">View Full Menu</button>
+            </Link>
+
             <Cover img={saladImg} title="salad" subTitle="Would you like to try a dish?"></Cover>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-12 my-10 w-11/12 mx-auto">
                 {
                     salad.map(menu => <MenuItem key={menu._id} menu={menu}></MenuItem>)
                 }
             </div>
+            <Link to={`/shop/${'salad'}`}>
+                <button className="btn btn-outline border-0 border-b-2 mx-auto block my-6">View Full Menu</button>
+            </Link>
         </section>
     )
 }

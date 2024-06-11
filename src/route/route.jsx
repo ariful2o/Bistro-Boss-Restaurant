@@ -1,10 +1,10 @@
 import {
     createBrowserRouter
 } from "react-router-dom";
-import Root from "../root/Root";
 import Home from "../pages/Home/Home/Home";
 import Order from "../pages/order/Order";
 import Shop from "../pages/shop/Shop";
+import Root from "../root/Root";
 
 const router = createBrowserRouter([
     {
@@ -20,8 +20,12 @@ const router = createBrowserRouter([
                 element:<Order></Order>
             },
             {
-                path:'/shop',
+                path:"/shop",
                 element:<Shop></Shop>
+            },
+            {
+                path: "/shop/:category",
+                element: <Shop></Shop>
             }
         ]
     },

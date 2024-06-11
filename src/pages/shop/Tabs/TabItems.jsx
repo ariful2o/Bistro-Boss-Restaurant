@@ -3,11 +3,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../hooks/menus/useMenu';
 import ItemCard from './ItemCard';
+import { useParams } from 'react-router-dom';
 
 export default function TabItems() {
+  const categorys=['salad','pizza','soup','dessert','drinks']
+  const {category}=useParams()
+  const insialIndex = categorys.indexOf(category)
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(insialIndex);
   const [menu] = useMenu()
+
 
   const pizza = menu.filter(menu => menu.category === "pizza")
   const soup = menu.filter(menu => menu.category === "soup")
