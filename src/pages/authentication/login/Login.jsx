@@ -5,7 +5,8 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import authentication from "../../../assets/others/authentication.png";
-import authentication1 from "../../../assets/others/authentication1.png";
+import authentication1 from "../../../assets/others/authentication2-removebg-preview.png";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [validateCap, setValidateCap] = useState(true);
@@ -34,19 +35,18 @@ const Login = () => {
 
   return (
     <div
-      className="hero min-h-screen bg-base-200"
+      className=" max-h-screen"
       style={{ backgroundImage: `url(${authentication})` }}
     >
-      <div
-        className="hero-content flex-col lg:flex-row p-8"
-        style={{ boxShadow: `10px 10px 10px 10px rgba(0, 0, 0, 0.25)` }}
-      >
-        <div className="text-center lg:text-left max-w-2xl bg-slate-900">
-          <img className="bg-transparent" src={authentication1} alt="" />
+      <div className="flex flex-col lg:flex-row justify-between items-center"
+        style={{ boxShadow: `10px 10px 10px 10px rgba(0, 0, 0, 0.25)` }}>
+
+        <div className="w-1/2">
+          <img src={authentication1} alt="" />
         </div>
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <h1 className="text-5xl font-bold text-center mt-4">Login now!</h1>
+        <div className="card shrink-0 w-full max-w-sm mx-auto max-h-screen">
           <form className="card-body" onSubmit={handleSubmit}>
+            <h1 className="text-2xl font-bold text-center ">Login now!</h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -92,7 +92,7 @@ const Login = () => {
 
             <div className="form-control mt-6">
               <button
-                className="btn btn-primary"
+                className="btn bg-[#D1A054B3]"
                 type="submit"
                 disabled={validateCap}
               >
@@ -100,6 +100,16 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <div className="text-center">
+            <p className="text-[#D1A054]">
+              New here? <span className="font-bold">Create a New Account</span>
+            </p>
+            <p>Or sign in with</p>
+            <div className="flex items-center justify-center gap-4 my-4">
+              <FaGoogle className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
+              <FaGithub className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
