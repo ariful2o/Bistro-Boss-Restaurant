@@ -50,7 +50,7 @@ const LayOut = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 bg-[#E8E8E8]">
         <Outlet></Outlet>
       </div>
     </div>
