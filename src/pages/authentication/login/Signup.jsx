@@ -1,12 +1,15 @@
+import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import authentication from "../../../assets/others/authentication.png";
 import authentication1 from "../../../assets/others/authentication2-removebg-preview.png";
 import { AuthContext } from "../../../authProvider/AuthProvider";
+import auth from "../../../firebase/firebase.config";
+import Swal from "sweetalert2";
 
 const Signup = () => {
-  const { signupUser } = useContext(AuthContext);
+  const { signupUser,signinGoogle } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,14 +19,24 @@ const Signup = () => {
     const password = form.password.value;
 
     signupUser(email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign Up Success",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        });
       })
-      .then((err) => console.log(err));
-
+      .then(err => console.log(err));
   };
+  const handleGoogleSignin = () => {
+    signinGoogle()
+     
+  }
 
   return (
     <div
@@ -97,7 +110,7 @@ const Signup = () => {
             </p>
             <p>Or sign in with</p>
             <div className="flex items-center justify-center gap-4 mt-3">
-              <FaGoogle className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
+              <FaGoogle onClick={handleGoogleSignin} className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
               <FaGithub className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
             </div>
           </div>

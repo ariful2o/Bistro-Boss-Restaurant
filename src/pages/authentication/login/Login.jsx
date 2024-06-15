@@ -9,9 +9,10 @@ import {
 import authentication from "../../../assets/others/authentication.png";
 import authentication1 from "../../../assets/others/authentication2-removebg-preview.png";
 import { AuthContext } from "../../../authProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signinUser } = useContext(AuthContext);
+  const { signinUser,signinGoogle } = useContext(AuthContext);
   const [validateCap, setValidateCap] = useState(true);
 
   useEffect(() => {
@@ -27,6 +28,13 @@ const Login = () => {
     signinUser(email, password)
       .then((userCredential) => {
         // Signed in
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign In Success",
+          showConfirmButton: false,
+          timer: 1500
+        });
         const user = userCredential.user;
         console.log(user);
       })
@@ -121,7 +129,7 @@ const Login = () => {
             </p>
             <p>Or sign in with</p>
             <div className="flex items-center justify-center gap-4 mt-3">
-              <FaGoogle className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
+              <FaGoogle onClick={signinGoogle} className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
               <FaGithub className="border-2 border-[#444444] w-12 rounded-full p-3 h-12" />
             </div>
           </div>
