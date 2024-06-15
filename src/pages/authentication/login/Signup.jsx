@@ -1,47 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  LoadCanvasTemplate,
-  loadCaptchaEnginge,
-  validateCaptcha,
-} from "react-simple-captcha";
 import authentication from "../../../assets/others/authentication.png";
 import authentication1 from "../../../assets/others/authentication2-removebg-preview.png";
 import { AuthContext } from "../../../authProvider/AuthProvider";
 
-const Login = () => {
-  const { signinUser } = useContext(AuthContext);
-  const [validateCap, setValidateCap] = useState(true);
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
+const Signup = () => {
+  const { signupUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
 
-    signinUser(email, password)
+    signupUser(email, password)
       .then((userCredential) => {
-        // Signed in
+        // Signed up
         const user = userCredential.user;
         console.log(user);
       })
-      .catch((err) => console.error(err));
+      .then((err) => console.log(err));
 
-    console.log(email, password);
-  };
-  const handleValidateCap = (e) => {
-    const userCaptcha = e.target.value;
-
-    if (validateCaptcha(userCaptcha)) {
-      setValidateCap(false);
-    } else {
-      setValidateCap(true);
-    }
   };
 
   return (
@@ -50,7 +31,7 @@ const Login = () => {
       style={{ backgroundImage: `url(${authentication})` }}
     >
       <div
-        className="flex flex-col lg:flex-row justify-between items-center pb-10 mx-auto max-h-[600px] w-[80%]"
+        className="flex flex-col lg:flex-row-reverse justify-between items-center pb-10 mx-auto max-h-[600px] w-[80%]"
         style={{ boxShadow: `10px 10px 10px 10px rgba(0, 0, 0, 0.25)` }}
       >
         <div className="w-1/2">
@@ -58,7 +39,19 @@ const Login = () => {
         </div>
         <div className="card w-full max-w-sm mx-auto">
           <form className="card-body" onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold text-center ">Login now!</h1>
+            <h1 className="text-3xl font-bold text-center ">Sign Up Now!</h1>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                name="name"
+                type="text"
+                placeholder="name"
+                className="input input-bordered"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -88,35 +81,18 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            <div className="form-control">
-              <div className="input input-bordered mb-10 p-3">
-                <LoadCanvasTemplate />
-              </div>
-              <input
-                onBlur={handleValidateCap}
-                name="userCaptcha"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered"
-                required
-              />
-            </div>
 
             <div className="form-control mt-2">
-              <button
-                className="btn bg-[#D1A054B3]"
-                type="submit"
-                disabled={validateCap}
-              >
-                Login
+              <button className="btn bg-[#D1A054B3]" type="submit">
+                Sign Up
               </button>
             </div>
           </form>
           <div className="text-center -mt-6">
             <p className="text-[#D1A054]">
-              New here?{" "}
-              <Link to="/signup">
-                <span className="font-bold">Create a New Account</span>
+              Already registered?
+              <Link to="/login">
+                <span className="font-bold"> Go to log in</span>
               </Link>
             </p>
             <p>Or sign in with</p>
@@ -131,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
