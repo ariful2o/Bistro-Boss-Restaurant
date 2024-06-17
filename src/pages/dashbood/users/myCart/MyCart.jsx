@@ -1,8 +1,8 @@
 import { CiTrash } from "react-icons/ci";
-import SectionTitle from "../../../components/sectionHeading/SectionTitle";
-import useAddtoCart from "../../../hooks/addtoCart/useAddtoCart";
-import useAxiosSecure from "../../../hooks/axios/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
+import useAddtoCart from "../../../../hooks/addtoCart/useAddtoCart";
+import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
 
 const MyCart = () => {
   const [cart, refetch] = useAddtoCart();
@@ -35,7 +35,6 @@ const MyCart = () => {
         });
       }
     });
-
   };
   return (
     <div className="w-11/12 mx-auto">

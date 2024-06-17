@@ -6,14 +6,17 @@ import { Navigation } from 'swiper/modules';
 import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import StarRating from "../../../../components/starReating/StarRating";
 import quateLeft from "../../../../assets/icon/quote-left 1.svg"
+import useAxiosPublic from "../../../../hooks/axios/useAxiosPublic";
 
 export default function Reviews() {
     const [reviews, setReviews] = useState([])
+    const axiosPublic=useAxiosPublic()
+
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
+        axiosPublic.get('/reviews')
+            .then(data => setReviews(data.data))
+    }, [axiosPublic])
+    
     return (
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
             {
