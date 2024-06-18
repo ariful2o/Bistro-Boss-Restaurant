@@ -1,22 +1,70 @@
 import { useQuery } from "@tanstack/react-query";
 import { CiTrash } from "react-icons/ci";
 import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const result = await axiosSecure.get("/users");
       return result.data;
     },
   });
-  console.log(users);
 
   const handleDelete = (user) => {
-    console.log(user);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(user._id);
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.acknowledged) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${user.name} has been deleted`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleMakeAdmin = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${user.name} make admin`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, make it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const addRole = { role: "admin" };
+        axiosSecure.patch(`/users/${user._id}`, addRole).then((res) => {
+          if (res.data.acknowledged) {
+            refetch();
+            Swal.fire({
+              title: "Admin!",
+              text: `${user.name} is now admin`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
   };
   return (
     <section>
@@ -51,7 +99,10 @@ const Users = () => {
                   {user.role === "admin" ? (
                     "Admin"
                   ) : (
-                    <button className="btn btn-warning btn-md">
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-warning btn-md"
+                    >
                       <FaUsers className="text-white text-3xl" />
                     </button>
                   )}
