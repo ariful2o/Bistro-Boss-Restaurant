@@ -5,7 +5,7 @@ import useAuth from "../../../../hooks/auth/useAuth";
 
 export default function Navbar() {
   const [cart] = useAddtoCart();
-  const { signOutUser ,user} = useAuth();
+  const { signOutUser, user } = useAuth();
 
   const navlist = (
     <>
@@ -65,12 +65,20 @@ export default function Navbar() {
       </div>
       <div className="navbar-end gap-4">
         <Link to="/dashboard">
-        <button className="btn">
-          <FaCartPlus />
-          <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
+          <button className="btn">
+            <FaCartPlus />
+            <div className="badge badge-secondary">+{cart.length}</div>
+          </button>
         </Link>
-       {user &&  <a onClick={signOutUser} className="btn">Log Out</a>}
+        {user ? (
+          <a onClick={signOutUser} className="btn">
+            Log Out
+          </a>
+        ) : (
+          <Link to="/login">
+            <button className="btn">LogIn</button>
+          </Link>
+        )}
       </div>
     </div>
   );

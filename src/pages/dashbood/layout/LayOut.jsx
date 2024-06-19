@@ -13,9 +13,11 @@ import {
   MdOutlineRateReview,
 } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../../hooks/isAdmin/useAdmin";
 
 const LayOut = () => {
-  const isAdmin = true;
+  const [isAdmin]=useAdmin()
+  
   return (
     <div className="flex">
       <div className="bg-[#D1A054] max-w-60 p-5 h-screen">
@@ -57,6 +59,47 @@ const LayOut = () => {
             <>
               <li>
                 <NavLink>
+                  <FaHome />
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/">
+                  <FaCalendarAlt />
+                  reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/">
+                  <MdOutlinePayment />
+                  payment history
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/mycart">
+                  <FaShoppingCart />
+                  My Cart
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/">
+                  <MdOutlineRateReview />
+                  add review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/">
+                  <FaCalendarCheck />
+                  my booking
+                </NavLink>
+              </li>
+            </>
+          )}
+          <div className="divider"></div>
+          {isAdmin && (
+            <>
+              <li>
+                <NavLink to="/">
                   <FaHome />
                   Home
                 </NavLink>

@@ -12,8 +12,8 @@ export default function ItemCard({item}) {
     const [,refetch]=useAddtoCart()
     
     const handleAddtoCart = () => {
-        const addFood = {foodId:_id,name,image,price,email:user.email}
-        if(user.email){
+        const addFood = {foodId:_id,name,image,price,email:user?.email}
+        if(user?.email){
             axiosSecure.post('/addtoCart',addFood).then(res=>{
                 if (res.data.acknowledged) {
                     refetch()

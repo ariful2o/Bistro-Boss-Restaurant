@@ -6,10 +6,11 @@ import authentication1 from "../../../assets/others/authentication2-removebg-pre
 import { AuthContext } from "../../../authProvider/AuthProvider";
 import SocialSignin from "../../../components/socialSignIn/SocialSignin";
 import auth from "../../../firebase/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signupUser } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -29,6 +30,7 @@ const Signup = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
         });
+        navigate('/')
       })
       .then((err) => console.log(err));
   };

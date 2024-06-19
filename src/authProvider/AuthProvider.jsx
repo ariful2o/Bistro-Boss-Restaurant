@@ -43,19 +43,29 @@ const AuthProvider = ({ children }) => {
       console.log("------>", currentUser);
       setUser(currentUser);
       setLoading(false);
-      
+
+      const userEmail = { email: currentUser?.email };
       const userInformations = {
-        name: currentUser.displayName,
-        email: currentUser.email,
+        name: currentUser?.displayName,
+        email: currentUser?.email,
       };
-      
-      currentUser && axiosPublic.post("/users", userInformations)
-      .then(res=>{
-        console.log(res);
-      })
+
+      if (currentUser) {
+        axiosPublic.post("/jwt", userEmail).then((res) => {
+          //save token
+          localStorage.setItem("token", res.data.token);
+          
+          //new user save database
+          axiosPublic.post("/users", userInformations).then(() => {
+          });
+          });
+          } else {
+            //remove token
+            localStorage.removeItem("token")
+      }
     });
     return () => unSubscribe();
-  }, [axiosPublic]);
+  }, [user]);
 
   const authInfo = {
     user,
