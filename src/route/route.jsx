@@ -7,8 +7,8 @@ import LayOut from "../pages/dashbood/layout/LayOut";
 import MyCart from "../pages/dashbood/users/myCart/MyCart";
 import Order from "../pages/order/Order";
 import Shop from "../pages/shop/Shop";
-import AdminRoute from "../private/AdminRoute";
 import Root from "../root/Root";
+import AdminRoute from "../private/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -51,11 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/users",
-        element: (
-          <AdminRoute>
-            <Users></Users>
-          </AdminRoute>
-        ),
+        element:<AdminRoute><Users></Users></AdminRoute>,
       },
     ],
   },
