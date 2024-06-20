@@ -4,17 +4,16 @@ import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
+import useAuth from "../../../../hooks/auth/useAuth";
 
 const Users = () => {
+  const {user:currentUser}=useAuth()
   const axiosSecure = useAxiosSecure();
+  
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const result = await axiosSecure.get("/users", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const result = await axiosSecure.get(`/users/?email=${currentUser.email}`);
       return result.data;
     },
   });
@@ -30,7 +29,6 @@ const Users = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(user._id);
         axiosSecure.delete(`/users/${user._id}`).then((res) => {
           if (res.data.acknowledged) {
             refetch();

@@ -5,7 +5,7 @@ import useAuth from "../hooks/auth/useAuth";
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
   const location = useLocation();
-  // console.log(user)
+
   if (user) {
     return children;
   }
@@ -13,4 +13,4 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default PrivateRoute;
-PrivateRoute.propTypes = {children: PropTypes.node.isRequired};
+PrivateRoute.propTypes = { children: PropTypes.node.isRequired };

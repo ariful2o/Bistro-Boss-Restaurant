@@ -1,16 +1,17 @@
 import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import authentication from "../../../assets/others/authentication.png";
 import authentication1 from "../../../assets/others/authentication2-removebg-preview.png";
 import { AuthContext } from "../../../authProvider/AuthProvider";
 import SocialSignin from "../../../components/socialSignIn/SocialSignin";
 import auth from "../../../firebase/firebase.config";
-import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signupUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,7 +31,7 @@ const Signup = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
         });
-        navigate('/')
+        navigate("/");
       })
       .then((err) => console.log(err));
   };

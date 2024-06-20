@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("------>", currentUser);
       setUser(currentUser);
-      setLoading(false);
 
       const userEmail = { email: currentUser?.email };
       const userInformations = {
@@ -54,15 +53,15 @@ const AuthProvider = ({ children }) => {
         axiosPublic.post("/jwt", userEmail).then((res) => {
           //save token
           localStorage.setItem("token", res.data.token);
-          
+
           //new user save database
-          axiosPublic.post("/users", userInformations).then(() => {
-          });
-          });
-          } else {
-            //remove token
-            localStorage.removeItem("token")
+          axiosPublic.post("/users", userInformations).then(() => {});
+        });
+      } else {
+        //remove token
+        localStorage.removeItem("token");
       }
+      setLoading(false);
     });
     return () => unSubscribe();
   }, [user]);

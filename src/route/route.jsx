@@ -8,6 +8,7 @@ import MyCart from "../pages/dashbood/users/myCart/MyCart";
 import Order from "../pages/order/Order";
 import Shop from "../pages/shop/Shop";
 import AdminRoute from "../private/AdminRoute";
+import PrivateRoute from "../private/PrivateRoute";
 import Root from "../root/Root";
 
 const router = createBrowserRouter([
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/mycart",
-        element: <MyCart></MyCart>,
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/users",

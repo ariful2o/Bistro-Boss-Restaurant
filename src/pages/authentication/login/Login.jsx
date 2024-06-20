@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   LoadCanvasTemplate,
   loadCaptchaEnginge,
@@ -15,6 +15,8 @@ const Login = () => {
   const { signinUser } = useContext(AuthContext);
   const [validateCap, setValidateCap] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  const go = location.state?.from?.pathname;
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -36,7 +38,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(go ? go : "/");
       })
       .catch((err) => console.error(err));
   };

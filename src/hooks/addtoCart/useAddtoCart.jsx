@@ -10,11 +10,11 @@ const useAddtoCart = () => {
   const { data: cart = [], refetch } = useQuery({
     queryKey: ["cart"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/addtoCart?email=${user?.email}`);
+      const res = await axiosSecure.get(`/addtoCart?email=${user.email}`);
       return res.data;
     },
   });
-  
+
   return [cart, refetch];
 };
 
