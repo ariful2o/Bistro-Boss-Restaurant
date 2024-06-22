@@ -11,7 +11,7 @@ const Users = () => {
   const axiosSecure = useAxiosSecure();
   
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users",currentUser.email],
     queryFn: async () => {
       const result = await axiosSecure.get(`/users/?email=${currentUser.email}`);
       return result.data;
