@@ -7,7 +7,9 @@ import {
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import auth from "../firebase/firebase.config";
+import useAddtoCart from "../hooks/addtoCart/useAddtoCart";
 import useAxiosPublic from "../hooks/axios/useAxiosPublic";
 
 export const AuthContext = createContext(null);
@@ -16,8 +18,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
-
   const googleProvider = new GoogleAuthProvider();
+
+  // const [, refetch] = useAddtoCart();
 
   // sign in and sign out ,signout
   const signinUser = (email, password) => {
@@ -28,14 +31,23 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const signOutUser = () => {
-    setLoading(true);
-    return auth.signOut();
-  };
   const signinGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+  const signOutUser = () => {
+    setLoading(true);
+    auth.signOut().then(() => {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign out Success",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      // refetch();
+    });
+  }
 
   //user management
   useEffect(() => {
@@ -64,15 +76,15 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     });
     return () => unSubscribe();
-  }, [user]);
+  }, [user, axiosPublic]);
 
   const authInfo = {
     user,
     loading,
     signupUser,
     signinUser,
-    signOutUser,
     signinGoogle,
+    signOutUser
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

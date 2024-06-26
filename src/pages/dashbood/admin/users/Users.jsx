@@ -4,20 +4,18 @@ import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
-import useAuth from "../../../../hooks/auth/useAuth";
 
 const Users = () => {
-  const {user:currentUser}=useAuth()
   const axiosSecure = useAxiosSecure();
-  
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users",currentUser.email],
+
+  const { data: allUsers = [], refetch } = useQuery({
+    queryKey: ["users"],
     queryFn: async () => {
-      const result = await axiosSecure.get(`/users/?email=${currentUser.email}`);
-      return result.data;
+      const res = await axiosSecure.get("/users");
+      return res.data;
     },
   });
-
+  // console.log(allUsers)
   const handleDelete = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -75,7 +73,7 @@ const Users = () => {
         subtitle="---How many??---"
       ></SectionTitle>
       <div className="overflow-x-auto bg-white p-8 mx-8">
-        <h2 className="text-2xl font-bold">Total users: {users.length}</h2>
+        <h2 className="text-2xl font-bold">Total users: {allUsers.length}</h2>
         <table className="table mt-10">
           {/* head */}
           <thead className="bg-[#D1A054]">
@@ -88,17 +86,18 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {allUsers.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
-                  <h4>{user.name}</h4>
+                  <h4>{user?.name}</h4>
                 </td>
                 <td>
-                  <h4>{user.email}</h4>
+                  {console.log(user)}
+                  <h4>{user?.email}</h4>
                 </td>
                 <td>
-                  {user.role === "admin" ? (
+                  {user?.role === "admin" ? (
                     "Admin"
                   ) : (
                     <button

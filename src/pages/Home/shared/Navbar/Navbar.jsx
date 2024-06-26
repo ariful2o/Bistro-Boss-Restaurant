@@ -12,8 +12,8 @@ export default function Navbar() {
       <li>
         <Link to="/">Home</Link>
       </li>
-      {/* <li><Link to='/'>CONTACT us</Link></li>
-        <li><Link to='/'>DASHBOARD</Link></li> */}
+      <li><Link to='/contacus'>CONTACT us</Link></li>
+        <li><Link to='/dashboard'>DASHBOARD</Link></li>
       <li>
         <Link to="/orders">Our Menu</Link>
       </li>
