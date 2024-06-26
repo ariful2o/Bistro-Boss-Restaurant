@@ -37,7 +37,7 @@ const LayOut = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/manageitems">
                   <FaList />
                   manage items
                 </NavLink>
