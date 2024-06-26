@@ -12,20 +12,28 @@ export default function Navbar() {
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li><Link to='/contacus'>CONTACT us</Link></li>
-        <li><Link to='/dashboard'>DASHBOARD</Link></li>
+      <li>
+        <Link to="/contacus">CONTACT us</Link>
+      </li>
+      <li>
+        <Link to="/dashboard">DASHBOARD</Link>
+      </li>
       <li>
         <Link to="/orders">Our Menu</Link>
       </li>
       <li>
         <Link to="/shop/drinks">Our Shop</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/signup">Sign Up</Link>
-      </li>
+      {!user && (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (

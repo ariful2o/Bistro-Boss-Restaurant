@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import auth from "../firebase/firebase.config";
-import useAddtoCart from "../hooks/addtoCart/useAddtoCart";
 import useAxiosPublic from "../hooks/axios/useAxiosPublic";
 
 export const AuthContext = createContext(null);
@@ -19,8 +18,6 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
   const googleProvider = new GoogleAuthProvider();
-
-  // const [, refetch] = useAddtoCart();
 
   // sign in and sign out ,signout
   const signinUser = (email, password) => {
@@ -45,9 +42,8 @@ const AuthProvider = ({ children }) => {
         showConfirmButton: false,
         timer: 1000,
       });
-      // refetch();
     });
-  }
+  };
 
   //user management
   useEffect(() => {
@@ -84,7 +80,7 @@ const AuthProvider = ({ children }) => {
     signupUser,
     signinUser,
     signinGoogle,
-    signOutUser
+    signOutUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

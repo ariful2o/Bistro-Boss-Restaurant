@@ -31,7 +31,7 @@ const LayOut = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/addItem">
                   <MdOutlineFoodBank />
                   add item
                 </NavLink>
