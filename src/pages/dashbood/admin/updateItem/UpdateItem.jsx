@@ -5,22 +5,24 @@ import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
 import useMenu from "../../../../hooks/menus/useMenu";
 import Swal from "sweetalert2";
 
-
 const UpdateItem = () => {
   const axiosSecure = useAxiosSecure();
   const [menu, refetch] = useMenu();
   const id = useParams();
+  const item = menu.find((item) => item._id === id.id);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      category: item.category,
+    },
+  });
 
-  const item = menu.find((item) => item._id === id.id);
-  const category = item.category
-  console.log(category);
-
+  const categoryTiem = item.category;
+  console.log(categoryTiem);
 
   const onSubmit = async (data) => {
     const menuItem = {
@@ -29,7 +31,6 @@ const UpdateItem = () => {
       price: parseFloat(data.price),
       recipe: data.recipe,
     };
-
     const updateItem = await axiosSecure.patch(`/menu/${item._id}`, menuItem);
     if (updateItem.data.acknowledged) {
       Swal.fire({
@@ -40,7 +41,7 @@ const UpdateItem = () => {
         timer: 1500,
       });
       reset();
-      refetch()
+      refetch();
     }
   };
 
@@ -72,7 +73,6 @@ const UpdateItem = () => {
                 <span className="label-text">Category*</span>
               </label>
               <select
-              defaultValue={category}
                 {...register("category")}
                 className="p-3 rounded-lg bg-white"
               >
@@ -81,7 +81,7 @@ const UpdateItem = () => {
                 <option value="desserts">Desserts</option>
                 <option value="soups">Soups</option>
                 <option value="pizza">Pizza</option>
-                <option value="Salad">Salad</option>
+                <option value="salad">Salad</option>
               </select>
             </div>
             <div className="form-control w-full">
