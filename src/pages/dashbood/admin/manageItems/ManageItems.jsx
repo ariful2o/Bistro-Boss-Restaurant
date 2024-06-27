@@ -4,6 +4,7 @@ import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import useMenu from "../../../../hooks/menus/useMenu";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu,refetch] = useMenu();
@@ -35,6 +36,7 @@ const ManageItems = () => {
       });
     
   }
+ 
   return (
     <div>
       <SectionTitle
@@ -76,9 +78,11 @@ const ManageItems = () => {
                   <h4>$ {item?.price}</h4>
                 </td>
                 <td>
-                  <button className="bg-[#D1A054] btn-md rounded">
+                 <Link to={`/dashboard/updateitem/${item._id}`}>
+                 <button  className="bg-[#D1A054] btn-md rounded">
                     <FaRegEdit className="text-white text-3xl ml-2" />
                   </button>
+                 </Link>
                 </td>
                 <th>
                   <button onClick={()=>handleDelete(item._id)} className="btn btn-error btn-md">

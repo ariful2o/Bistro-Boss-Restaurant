@@ -93,7 +93,6 @@ const Users = () => {
                   <h4>{user?.name}</h4>
                 </td>
                 <td>
-                  {console.log(user)}
                   <h4>{user?.email}</h4>
                 </td>
                 <td>

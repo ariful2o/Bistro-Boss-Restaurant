@@ -3,6 +3,8 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/authentication/login/Login";
 import Signup from "../pages/authentication/login/Signup";
 import AddItem from "../pages/dashbood/admin/addItem/AddItem";
+import ManageItems from "../pages/dashbood/admin/manageItems/ManageItems";
+import UpdateItem from "../pages/dashbood/admin/updateItem/UpdateItem";
 import Users from "../pages/dashbood/admin/users/Users";
 import LayOut from "../pages/dashbood/layout/LayOut";
 import MyCart from "../pages/dashbood/users/myCart/MyCart";
@@ -11,7 +13,6 @@ import Shop from "../pages/shop/Shop";
 import AdminRoute from "../private/AdminRoute";
 import PrivateRoute from "../private/PrivateRoute";
 import Root from "../root/Root";
-import ManageItems from "../pages/dashbood/admin/manageItems/ManageItems";
 
 const router = createBrowserRouter([
   {
@@ -73,10 +74,19 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/updateitem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem></UpdateItem>
+          </AdminRoute>
+        ),
+        loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+      },
+      {
         path: "/dashboard/manageitems",
         element: (
           <AdminRoute>
-           <ManageItems></ManageItems>
+            <ManageItems></ManageItems>
           </AdminRoute>
         ),
       },
