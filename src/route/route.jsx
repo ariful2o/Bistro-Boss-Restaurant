@@ -8,6 +8,7 @@ import UpdateItem from "../pages/dashbood/admin/updateItem/UpdateItem";
 import Users from "../pages/dashbood/admin/users/Users";
 import LayOut from "../pages/dashbood/layout/LayOut";
 import MyCart from "../pages/dashbood/users/myCart/MyCart";
+import Payment from "../pages/dashbood/users/payment/Payment";
 import Order from "../pages/order/Order";
 import Shop from "../pages/shop/Shop";
 import AdminRoute from "../private/AdminRoute";
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <LayOut></LayOut>,
     children: [
+      // users routes
       {
         path: "/dashboard/mycart",
         element: (
@@ -57,6 +59,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/dashboard/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      // admin routes
       {
         path: "/dashboard/users",
         element: (
@@ -80,7 +91,8 @@ const router = createBrowserRouter([
             <UpdateItem></UpdateItem>
           </AdminRoute>
         ),
-        loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
         path: "/dashboard/manageitems",

@@ -21,9 +21,6 @@ const UpdateItem = () => {
     },
   });
 
-  const categoryTiem = item.category;
-  console.log(categoryTiem);
-
   const onSubmit = async (data) => {
     const menuItem = {
       name: data.name,
@@ -111,7 +108,7 @@ const UpdateItem = () => {
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Update Recipe Details</button>
+            <button className="bg-gradient-to-r from-[#835D23] to-[#B58130] btn">Update Recipe Details</button>
           </div>
         </form>
       </div>

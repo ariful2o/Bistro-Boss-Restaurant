@@ -116,7 +116,7 @@ const AddItem = () => {
             className="file-input file-input-base-300 w-full max-w-xs"
           />
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add Item </button>
+            <button className="btn bg-gradient-to-r from-[#835D23] to-[#B58130] ">Add Item </button>
           </div>
         </form>
       </div>

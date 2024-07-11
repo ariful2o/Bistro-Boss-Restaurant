@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../../../components/sectionHeading/SectionTitle";
 import useAddtoCart from "../../../../hooks/addtoCart/useAddtoCart";
 import useAxiosSecure from "../../../../hooks/axios/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useAddtoCart();
@@ -47,9 +48,11 @@ const MyCart = () => {
           <div className="flex justify-between font-semibold">
             <h2 className="text-2xl">Total orders: {cart.length}</h2>
             <h2 className="text-2xl">Total price: ${totalPrice}</h2>
+            <Link to="/dashboard/payment">
             <button className="bg-[#D1A054] text-white font-bold p-3 rounded-lg">
               PAY
             </button>
+            </Link>
           </div>
         </div>
         <div className="overflow-x-auto">
