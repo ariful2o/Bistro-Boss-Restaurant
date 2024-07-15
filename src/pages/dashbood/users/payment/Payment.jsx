@@ -9,7 +9,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PUBLISH_KEY);
 const Payment = () => {
   return (
     <div>
-      <SectionTitle title="Payment" subtitle="lksdfj"></SectionTitle>
+      <SectionTitle title="Payment" subtitle="Enter you card Details"></SectionTitle>
       <div className="">
         <Elements stripe={stripePromise}>
           <CheckoutForm></CheckoutForm>

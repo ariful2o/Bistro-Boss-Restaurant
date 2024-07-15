@@ -2,10 +2,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 
-const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
-})
+const axiosSecure = axios.create({baseURL: 'http://localhost:5000'})
+
 const useAxiosSecure = () => {
+
     const navigate = useNavigate();
     const { signOutUser } = useAuth();
 
@@ -34,9 +34,6 @@ const useAxiosSecure = () => {
         }
         return Promise.reject(error);
     })
-
-
     return axiosSecure;
 };
-
 export default useAxiosSecure;

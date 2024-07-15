@@ -14,6 +14,7 @@ import Shop from "../pages/shop/Shop";
 import AdminRoute from "../private/AdminRoute";
 import PrivateRoute from "../private/PrivateRoute";
 import Root from "../root/Root";
+import PaymentHistory from "../pages/dashbood/users/payHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/paymenthistory",
+        element: (
+          <PrivateRoute>
+           <PaymentHistory></PaymentHistory>
           </PrivateRoute>
         ),
       },

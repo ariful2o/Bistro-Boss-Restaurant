@@ -11,6 +11,7 @@ const CheckoutForm = () => {
   const { user } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [payId,setPayId] = useState("");
 
   const stripe = useStripe();
   const elements = useElements();
@@ -74,6 +75,7 @@ const CheckoutForm = () => {
     } else {
         // console.log("success", paymentIntent);
       if (paymentIntent.status === "succeeded") {
+        setPayId(paymentIntent.id)
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -91,7 +93,7 @@ const CheckoutForm = () => {
           status: "Pending",
         };
         const res = await axiosSecure.post("/payment", payment);
-        console.log(res.data);
+        console.log(res.data,"Clear the cart");
         refetch()
       }
     }
@@ -124,7 +126,10 @@ const CheckoutForm = () => {
           Pay
         </button>
       </form>
-      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+      {errorMessage && <div className="text-red-500 mt-10">{errorMessage}</div>}
+      {payId.id&&
+      <p className="text-center text-green-700 mt-10">{payId.id}</p>
+      }
     </div>
   );
 };

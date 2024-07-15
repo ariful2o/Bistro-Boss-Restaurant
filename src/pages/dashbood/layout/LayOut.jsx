@@ -71,9 +71,9 @@ const LayOut = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
+              <NavLink to="/dashboard/paymenthistory">
                 <MdOutlinePayment />
-                payment history
+                Payment History
               </NavLink>
             </li>
             <li>
