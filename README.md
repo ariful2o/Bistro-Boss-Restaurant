@@ -9,6 +9,7 @@ This project is a front-end application for Bistro Boss.
 ## Live Demo
 
 You can view a live demo of this project here: https://bistro-boss-c020c.web.app
+You can view a live demo of this project here: https://bistro-boss-01.netlify.app
 
 ## Installation
 
