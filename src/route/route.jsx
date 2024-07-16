@@ -8,13 +8,13 @@ import UpdateItem from "../pages/dashbood/admin/updateItem/UpdateItem";
 import Users from "../pages/dashbood/admin/users/Users";
 import LayOut from "../pages/dashbood/layout/LayOut";
 import MyCart from "../pages/dashbood/users/myCart/MyCart";
+import PaymentHistory from "../pages/dashbood/users/payHistory/PaymentHistory";
 import Payment from "../pages/dashbood/users/payment/Payment";
 import Order from "../pages/order/Order";
 import Shop from "../pages/shop/Shop";
 import AdminRoute from "../private/AdminRoute";
 import PrivateRoute from "../private/PrivateRoute";
 import Root from "../root/Root";
-import PaymentHistory from "../pages/dashbood/users/payHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
         path: "/dashboard/paymenthistory",
         element: (
           <PrivateRoute>
-           <PaymentHistory></PaymentHistory>
+            <PaymentHistory></PaymentHistory>
           </PrivateRoute>
         ),
       },
@@ -101,7 +101,9 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+          fetch(
+            `https://bistro-boss-server-omega-pied.vercel.app/menu/${params.id}`
+          ),
       },
       {
         path: "/dashboard/manageitems",
