@@ -1,4 +1,4 @@
-# Bistro Boss Client
+# Bistro Boss Clientemail
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yourusername/bistro-boss-client/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/yourusername/bistro-boss-client)](https://github.com/yourusername/bistro-boss-client/issues)
